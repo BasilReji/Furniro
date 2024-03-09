@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import furnitureslice from "../redux/furnitures/furnitureslice";
+import furnitureslice from "../redux/furnitures/furniture.slice";
 export const store = configureStore({
   reducer: {
     furniture: furnitureslice,
