@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import furnitureslice from "../redux/furnitures/furniture.slice";
+import cartSlice from "../redux/cart/cart.slice";
 export const store = configureStore({
   reducer: {
     furniture: furnitureslice,
+    cart: cartSlice,
   },
 });
 
