@@ -1,11 +1,22 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
+import { useEffect, useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
+import { getFurnitures } from "./redux/furnitures/furnitureslice";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "./store/store";
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const dispatch = useDispatch();
+  const furnitures = useSelector(
+    (state: RootState) => state.furniture.furnitures
+  );
 
+  console.log(furnitures);
+
+  useEffect(() => {
+    dispatch(getFurnitures());
+  }, [dispatch]);
   return (
     <>
       <div>
@@ -29,7 +40,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
