@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import { getFurnitureList } from "./redux/furnitures/furniture.slice";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,12 +19,17 @@ function App() {
       audioRef.current.play();
     }
 
+    setLoading(true);
+
     setTimeout(() => {
+      setLoading(false);
       navigate(ROUTE_CONSTANTS.CART);
     }, 10000);
   };
 
   console.log(furnitureList);
+
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     dispatch(getFurnitureList());
@@ -32,7 +37,9 @@ function App() {
   return (
     <>
       <div className="card">
-        <button onClick={playAudio}>Click Me to navigate</button>
+        <button onClick={playAudio}>
+          {loading ? "Loading...." : "Click Me to navigate"}
+        </button>
       </div>
       <audio ref={audioRef}>
         <source src={welcome} type="audio/mpeg" />
